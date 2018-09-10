@@ -24,29 +24,27 @@ namespace OOP_RPG
 
             //Call 1st monster 
             //this.enemy = this.Monsters[0];
-            //this.enemy = enemy;
 
             //Call Last Monster
             //this.enemy = this.Monsters.Last();
-            //this.enemy = enemy1;
+
 
             //Call Second Monster
             //this.enemy = monsters.ElementAt(1);
-            //this.enemy;
+
 
             //Call Less 20 heat point monster 
             //this.enemy = this.Monsters.Where(p => p.OriginalHP < 20).First();
-            //this.enemy = enemy;
+
 
             //Call at leat 11 strength monster
             //this.enemy = this.Monsters.Where(p => p.Strength >= 11).First();
-            //this.enemy;
+
 
             //Call random monster
             Random rnd = new Random();
             int x = (int)rnd.Next(0, 4);
-            enemy = this.Monsters[x]; 
-            this.enemy = enemy;
+            this.enemy = this.Monsters[x]; 
         }
         
         public void AddMonster(string name, int strength, int defense, int hp) {
