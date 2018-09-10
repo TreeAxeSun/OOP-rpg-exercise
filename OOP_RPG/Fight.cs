@@ -32,16 +32,28 @@ namespace OOP_RPG
         }
         
         public void Start() {
+            //Call 1st monster 
+            //var enemy = this.Monsters[0];
+
             var enemies = this.Monsters;
+
+            //Call Last Monster
             //var LastMonster = enemies.Last();
             //var enemy = LastMonster;
+
+            //Call Second Monster
             //var SecondMonster = enemies.ElementAt(1);
             //var enemy = LastMonster;
+
+            //Call Less 20 heat point monster 
             //var Less20HPMonsters = enemies.Where(p => p.OriginalHP < 20).First();
             //var enemy = Less20HPMonsters
+
+            //Call at leat 11 strength monster
             //var Over11StrMonster = enemies.Where(p => p.Strength >= 11).First();
             //var enemy = Over11StrMonster;
 
+            //Call random monster
             Random rnd = new Random();
             int x = (int)rnd.Next(0, 4);
             var enemy = enemies[x];
