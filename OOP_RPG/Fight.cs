@@ -22,16 +22,19 @@ namespace OOP_RPG
         }
         
         public void AddMonster(string name, int strength, int defense, int hp) {
-            var monster = new Monster();
-            monster.Name = name;
+            var monster = new Monster(name, strength, defense, hp);
+            
+            /*monster.Name = name;
             monster.Strength = strength;
             monster.Defense = defense;
             monster.OriginalHP = hp;
-            monster.CurrentHP = hp;
+            monster.CurrentHP = hp;*/
+            
             this.Monsters.Add(monster);
         }
         
         public void Start() {
+
             //Call 1st monster 
             //var enemy = this.Monsters[0];
 
