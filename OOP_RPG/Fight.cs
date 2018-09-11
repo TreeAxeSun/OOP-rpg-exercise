@@ -17,31 +17,10 @@ namespace OOP_RPG
             this.game = game;
 
             this.AddMonster("Squid", 9, 8, 20);
-            // added new monsters
             this.AddMonster("Salmon", 10, 7, 18);
             this.AddMonster("Octopus", 17, 12, 21);
-            this.AddMonster("Shark", 28, 28, 32);
+            this.AddMonster("Shark", 20, 20, 28);
 
-            //Call 1st monster 
-            //this.enemy = this.Monsters[0];
-
-            //Call Last Monster
-            //this.enemy = this.Monsters.Last();
-
-
-            //Call Second Monster
-            //this.enemy = monsters.ElementAt(1);
-
-
-            //Call Less 20 heat point monster 
-            //this.enemy = this.Monsters.Where(p => p.OriginalHP < 20).First();
-
-
-            //Call at leat 11 strength monster
-            //this.enemy = this.Monsters.Where(p => p.Strength >= 11).First();
-
-
-            //Call random monster
             Random rnd = new Random();
             int x = (int)rnd.Next(0, 4);
             this.enemy = this.Monsters[x]; 
@@ -49,13 +28,6 @@ namespace OOP_RPG
         
         public void AddMonster(string name, int strength, int defense, int hp) {
             var monster = new Monster(name, strength, defense, hp);
-            
-            /*monster.Name = name;
-            monster.Strength = strength;
-            monster.Defense = defense;
-            monster.OriginalHP = hp;
-            monster.CurrentHP = hp;*/
-            
             this.Monsters.Add(monster);
         }
         
@@ -74,7 +46,7 @@ namespace OOP_RPG
         }
         
         public void HeroTurn(){
-           //var enemy = Monster;
+
            var compare = hero.Strength - enemy.Defense;
            int damage;
            
@@ -99,7 +71,7 @@ namespace OOP_RPG
         }
         
         public void MonsterTurn(){
-           //var enemy = monster;
+
            int damage;
            var compare = enemy.Strength - hero.Defense;
            if(compare <= 0) {
@@ -121,8 +93,11 @@ namespace OOP_RPG
         }
         
         public void Win() {
-            //var enemy = monster;
+
             Console.WriteLine(enemy.Name + " has been defeated! You win the battle!");
+            Console.WriteLine(hero.Name + " gets " + enemy.Gold + " gold from " + enemy.Name + ".");
+            hero.Gold = hero.Gold + enemy.Gold;
+            Console.WriteLine("Now " + hero.Name + " has " + hero.Gold + " Gold.");
             game.Main();
         }
         

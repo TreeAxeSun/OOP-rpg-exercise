@@ -12,6 +12,8 @@ namespace OOP_RPG
             this.Defense = defense;
             this.OriginalHP = hp;
             this.CurrentHP = hp;
+            //Initialize gold 5
+            this.Gold = 5;
         }
 
         public string Name { get; set; }
@@ -19,5 +21,7 @@ namespace OOP_RPG
         public int Defense { get; set; }
         public int OriginalHP { get; set; }
         public int CurrentHP { get; set; }
+        //Add gold property
+        public int Gold { get; set; }
     }
 }
