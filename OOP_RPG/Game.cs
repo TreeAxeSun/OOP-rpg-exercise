@@ -6,6 +6,7 @@ namespace OOP_RPG
     public class Game
     {
         public Hero hero { get; set; }
+        public Shop shop { get; set; }
 
         public Game()
         {
@@ -23,10 +24,13 @@ namespace OOP_RPG
 
         public void Main()
         {
+            Console.Clear();
             Console.WriteLine("Please choose an option by entering a number.");
+            Console.WriteLine("If you don't choose 1~4, you can quit the game.");
             Console.WriteLine("1. View Stats");
             Console.WriteLine("2. View Inventory");
             Console.WriteLine("3. Fight Monster");
+            Console.WriteLine("4. Visit Shop");
             var input = Console.ReadLine();
             if (input == "1")
             {
@@ -39,6 +43,10 @@ namespace OOP_RPG
             else if (input == "3")
             {
                 this.Fight();
+            }
+            else if (input == "4")
+            {
+                this.Menu();
             }
             else
             {
@@ -68,6 +76,10 @@ namespace OOP_RPG
             fight.Start();
         }
 
-
+        public void Menu()
+        {
+            var menu = new Shop(this.hero, this);
+            menu.Menu();
+        }
     }
 }

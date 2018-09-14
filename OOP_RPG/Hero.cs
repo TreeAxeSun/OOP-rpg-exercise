@@ -17,6 +17,7 @@ namespace OOP_RPG
         {
             this.ArmorsBag = new List<Armor>();
             this.WeaponsBag = new List<Weapon>();
+            this.PotionsBag = new List<Potion>();
             this.Strength = 10;
             this.Defense = 10;
             this.OriginalHP = 30;
@@ -37,6 +38,7 @@ namespace OOP_RPG
 
         public List<Armor> ArmorsBag { get; set; }
         public List<Weapon> WeaponsBag { get; set; }
+        public List<Potion> PotionsBag { get; set; }
 
         //These are the Methods of our Class.
         public void ShowStats()
@@ -45,6 +47,7 @@ namespace OOP_RPG
             Console.WriteLine("Strength: " + this.Strength);
             Console.WriteLine("Defense: " + this.Defense);
             Console.WriteLine("Hitpoints: " + this.CurrentHP + "/" + this.OriginalHP);
+            Console.WriteLine("Gold: " + this.Gold);
         }
 
         public void ShowInventory()
@@ -59,6 +62,11 @@ namespace OOP_RPG
             foreach (var a in this.ArmorsBag)
             {
                 Console.WriteLine(a.Name + " of " + a.Defense + " Defense");
+            }
+            Console.WriteLine("Potion: ");
+            foreach (var p in this.PotionsBag)
+            {
+                Console.WriteLine(p.Name + " of " + p.HP + " HP");
             }
         }
 
