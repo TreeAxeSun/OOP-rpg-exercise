@@ -9,19 +9,19 @@ namespace OOP_RPG
         public string Name { get; set; }
         public int Strength { get; set; }
         public int Defense { get; set; }
+        public int Speed { get; set; }
         public int OriginalHP { get; set; }
         public int CurrentHP { get; set; }
-        //Add gold property
         public int Gold { get; set; }
 
-        public Monster(string name, int strength, int defense, int hp)
+        public Monster(string name, int strength, int defense, int speed, int hp)
         {
             this.Name = name;
             this.Strength = strength;
             this.Defense = defense;
+            this.Speed = speed;
             this.OriginalHP = hp;
             this.CurrentHP = hp;
-            //Initialize gold 5
             this.Gold = 5;
         }
     }

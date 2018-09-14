@@ -24,7 +24,6 @@ namespace OOP_RPG
 
         public void Main()
         {
-            Console.Clear();
             Console.WriteLine("Please choose an option by entering a number.");
             Console.WriteLine("If you don't choose 1~4, you can quit the game.");
             Console.WriteLine("1. View Stats");

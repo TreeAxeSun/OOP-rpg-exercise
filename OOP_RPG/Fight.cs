@@ -17,19 +17,19 @@ namespace OOP_RPG
             this.hero = hero;
             this.game = game;
 
-            this.AddMonster("Squid", 9, 8, 20);
-            this.AddMonster("Salmon", 10, 7, 18);
-            this.AddMonster("Octopus", 11, 12, 21);
-            this.AddMonster("Shark", 13, 15, 24);
+            this.AddMonster("Squid", 9, 8, 9, 20);
+            this.AddMonster("Salmon", 10, 7, 8, 18);
+            this.AddMonster("Octopus", 11, 12, 10, 21);
+            this.AddMonster("Shark", 13, 15, 12, 24);
 
             Random rnd = new Random();
             int x = (int)rnd.Next(0, 4);
             this.enemy = this.Monsters[x];
         }
 
-        public void AddMonster(string name, int strength, int defense, int hp)
+        public void AddMonster(string name, int strength, int defense, int speed, int hp)
         {
-            var monster = new Monster(name, strength, defense, hp);
+            var monster = new Monster(name, strength, defense, speed, hp);
             this.Monsters.Add(monster);
         }
 
@@ -38,15 +38,24 @@ namespace OOP_RPG
 
             Console.WriteLine("You've encountered a " + enemy.Name + "! " + enemy.Strength + " Strength/" + enemy.Defense + " Defense/" +
             enemy.CurrentHP + " HP. What will you do?");
-            Console.WriteLine("1. Fight");
+            Console.WriteLine("If you want to fight, enter 1.");
+            Console.WriteLine("If you want to escape, enter any key.");
             var input = Console.ReadLine();
             if (input == "1")
             {
                 this.HeroTurn();
             }
-            else
+            else 
             {
-                this.game.Main();
+                if (hero.Speed > enemy.Speed)
+                {
+                    this.game.Main();
+                }
+                else
+                {
+                    Console.WriteLine("Your speed is slower than the monster, so that you can't escape from the monster.");
+                    this.HeroTurn();
+                }
             }
         }
 
@@ -95,7 +104,10 @@ namespace OOP_RPG
             Console.WriteLine(enemy.Name + " does " + damage + " damage!");
             if (hero.CurrentHP <= 0)
             {
-                this.Lose();
+                Console.WriteLine("You've been defeated! :( GAME OVER.)");
+                Console.WriteLine("If you enter any key, you will escape out from this game. Bye");
+                Console.ReadLine();
+                return;
             }
             else
             {
@@ -112,13 +124,6 @@ namespace OOP_RPG
             Console.WriteLine("Now " + hero.Name + " has " + hero.Gold + " Gold.");
             game.Main();
         }
-
-        public void Lose()
-        {
-            Console.WriteLine("You've been defeated! :( GAME OVER.");
-            return;
-        }
-
     }
 
 }

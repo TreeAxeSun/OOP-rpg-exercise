@@ -113,11 +113,9 @@ namespace OOP_RPG
                 Console.WriteLine("");
                 Menu();
             }
-
-            var select = Console.ReadLine();
         }
 
-        private void BuyfromUser()
+        public void BuyfromUser()
         {
             for (var i = 0; i < hero.WeaponsBag.Count(); i++)
             {
@@ -160,8 +158,6 @@ namespace OOP_RPG
                     Menu();
                 }
             }
-            
-            var select = Console.ReadLine();
         }
 
         public void Sell()

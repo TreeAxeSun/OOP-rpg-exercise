@@ -20,6 +20,7 @@ namespace OOP_RPG
             this.PotionsBag = new List<Potion>();
             this.Strength = 10;
             this.Defense = 10;
+            this.Speed = 10;
             this.OriginalHP = 30;
             this.CurrentHP = 30;
             this.Gold = 0;
@@ -29,12 +30,13 @@ namespace OOP_RPG
         public string Name { get; set; }
         public int Strength { get; set; }
         public int Defense { get; set; }
+        public int Speed { get; set; }
         public int OriginalHP { get; set; }
         public int CurrentHP { get; set; }
-        //Add gold property
         public int Gold { get; set; }
         public Weapon EquippedWeapon { get; set; }
         public Armor EquippedArmor { get; set; }
+        public Potion TookPotion { get; set; }
 
         public List<Armor> ArmorsBag { get; set; }
         public List<Weapon> WeaponsBag { get; set; }
@@ -46,8 +48,9 @@ namespace OOP_RPG
             Console.WriteLine("*****" + this.Name + "*****");
             Console.WriteLine("Strength: " + this.Strength);
             Console.WriteLine("Defense: " + this.Defense);
+            Console.WriteLine("Speed: " + this.Speed);
             Console.WriteLine("Hitpoints: " + this.CurrentHP + "/" + this.OriginalHP);
-            Console.WriteLine("Gold: " + this.Gold);
+            Console.WriteLine("Gold: " + this.Gold);      
         }
 
         public void ShowInventory()
@@ -68,13 +71,48 @@ namespace OOP_RPG
             {
                 Console.WriteLine(p.Name + " of " + p.HP + " HP");
             }
+            Console.WriteLine("If you enter number 1 or 2, the first item in your bag is automatically equipped.");
+            Console.WriteLine("1. Equip Weapon");
+            Console.WriteLine("2. Equip Armor");
+            Console.WriteLine("3. Take a potion");
+
+            var input = Console.ReadLine();
+            if (input == "1")
+            {
+                EquipWeapon();
+                ShowStats();
+            }
+            else if (input == "2")
+            {
+                EquipArmor();
+                ShowStats();
+            }
+            else if (input == "3")
+            {
+                TakePotion();
+                ShowStats();
+            }
+            else
+            {
+                ShowStats();
+            }
         }
 
         public void EquipWeapon()
         {
             if (WeaponsBag.Any())
             {
-                this.EquippedWeapon = this.WeaponsBag[0];
+                if(WeaponsBag[0] != null)
+                {
+                    this.EquippedWeapon = this.WeaponsBag[0];
+                    this.Strength = this.EquippedWeapon.Strength + this.Strength;
+                    Console.WriteLine($"You get {this.EquippedWeapon.Strength} strength.");
+                    Console.WriteLine($"Your Strength is {this.Strength} now.");
+                }
+                else
+                {
+                    this.Strength = 10;
+                }
             }
         }
 
@@ -82,9 +120,39 @@ namespace OOP_RPG
         {
             if (ArmorsBag.Any())
             {
-                this.EquippedArmor = this.ArmorsBag[0];
+                if (ArmorsBag[0] != null)
+                {
+                    this.EquippedArmor = this.ArmorsBag[0];
+                    this.Defense = this.EquippedArmor.Defense + this.Defense;
+                    Console.WriteLine($"You get {this.EquippedArmor.Defense} Defense.");
+                    Console.WriteLine($"Your Strength is {this.Defense} now.");
+                }
+                else
+                {
+                    this.Defense = 10;
+                }
             }
         }
 
+        public void TakePotion()
+        {
+            if (PotionsBag.Any())
+            {
+                if (PotionsBag[0] != null)
+                {
+                    this.TookPotion = this.PotionsBag.Last();
+                    this.PotionsBag.RemoveAt(0);
+                    this.CurrentHP = this.TookPotion.HP + this.CurrentHP;
+                    if(this.CurrentHP > this.OriginalHP)
+                    {
+                        this.CurrentHP = 30;
+                    }
+                    else
+                    {
+                        this.CurrentHP = this.CurrentHP;
+                    }
+                }
+            }
+        }
     }
 }
